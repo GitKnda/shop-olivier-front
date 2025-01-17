@@ -20,6 +20,24 @@ async function getProducts(){
   }
 }
 
+async function ajouterPanier(id) {
+  const response = await fetch('http://localhost:5000/ajouter', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify({
+      id: id,
+    })
+  });
+  try {
+    const data = await response.json();
+  } catch (error) {
+    
+  }
+
+}
+
 onMounted(() => {
   getProducts();
 });
@@ -33,7 +51,7 @@ function addProductToCart(productId){
 
 function removeProductToCart(cartId){
   console.log(cartId);
-  const removeCart = products.find((cart) => cart.id - cartId);
+  const removeCart = products.delete((cart) => cart.id === cartId);
   cart.push(removeCart);
 }
 </script>

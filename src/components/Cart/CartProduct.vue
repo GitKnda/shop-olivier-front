@@ -2,13 +2,15 @@
 defineProps({
   cart: Object,
 });
+
+const emit = defineEmits(["removeProductToCart"]);
 </script>
 
 <template>
   <div class="mb-10 p-10 d-flex flex-row align-items-center product">
     <strong class="flex-fill mr-10">{{ cart.title }}</strong>
     <span class="mr-10">{{ cart.price }}€</span>
-    <button class="btn btn-danger">Delete</button>
+    <button @click="emit('removeProductToCart', cart.id)" class="btn btn-danger">Delete</button>
   </div>
 </template>
 
